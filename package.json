@@ -1,0 +1,26 @@
+{
+  "name": "node-linknx",
+  "version": "0.1.6",
+  "author": "Fabrice <fabrice@telecom4all.be> (http://www.telecom4all.be)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angelz07/node-linknx.git"
+  },
+  "dependencies": {
+    "xml2js": "~0.4.4"
+  },
+  "description": "node-linknx\r ===========",
+  "bugs": {
+    "url": "https://github.com/angelz07/node-linknx/issues"
+  },
+  "homepage": "https://github.com/angelz07/node-linknx",
+  "main": "./lib/linknx",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "linknx"
+  ],
+  "license": "BSD-2-Clause"
+}
