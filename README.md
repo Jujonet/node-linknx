@@ -41,6 +41,12 @@ var interval = 2000;
 var refresh_linknx = linknx.refresh_linknx(HOST,PORT, interval, callback);
 ```
 
+Pour la reception des eventsource de linknx pour evité les requetes multiple et être averti en live 
+
+```javascript
+var PORT_EVENT = 80;
+var eventsource_linknx = linknx.eventsource_linknx(HOST,PORT_EVENT,callback);
+```
 
 Pour une Demande état de tous les Objets linknx une seule fois
 

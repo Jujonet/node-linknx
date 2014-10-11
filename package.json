@@ -1,13 +1,18 @@
 {
   "name": "node-linknx",
-  "version": "0.1.7",
-  "author": "Fabrice <fabrice@telecom4all.be> (http://www.telecom4all.be)",
+  "version": "0.2.0",
+  "author": {
+    "name": "Fabrice",
+    "email": "fabrice@telecom4all.be",
+    "url": "http://www.telecom4all.be"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/angelz07/node-linknx.git"
   },
   "dependencies": {
-    "xml2js": "~0.4.4"
+    "xml2js": "~0.4.4",
+	"eventsource": "~0.1.3"
   },
   "description": "node-linknx\r <-> Communication NodeJs with Linknx",
   "bugs": {
@@ -22,5 +27,9 @@
   "keywords": [
     "linknx"
   ],
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "readme": "node-linknx\n===========\n\nCommunication entre nodejs et Linknx\n\nDescription\n===========\n\nUn simple module qui permet de demander l'�tat de tous les objets ou de certains seulement, ainsi que de changer l'�tat de un ou plusieurs objets et de recevoir tout cela dans une variable json\nUses [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js) \n\nInstallation\n============\n\nla fa�on la plus simple d'installer `node-linknx` est d'utiliser [npm](http://npmjs.org) , `npm\ninstall node-linknx` va t�l�charger node-linknx et toutes les d�pendances.\n\nUsage\n=====\n\nOn d�clare la lib avec les variables Host (adresse ip serveur linknx) et PORT (le port linknx normalement 1028)\n\n```javascript\nvar linknx = require('node-linknx');\nvar HOST = \"127.0.0.1\";\nvar PORT = 1028;\n```\n\nOn cr�e la fonction de callback �  envoyer elle prendra en param�tre un fichier json\n```javascript\nvar callback = function(arg) { \n        console.dir(arg);\n        /* Votre code sur le retour ici */\n};\n```\n\nPour une Demande �tat de tous les Objets linknx toute les X (var interval ) sec \n\n```javascript\nvar interval = 2000;\nvar refresh_linknx = linknx.refresh_linknx(HOST,PORT, interval, callback);\n```\n\n\nPour une Demande �tat de tous les Objets linknx une seule fois\n\n```javascript\nvar status_all_linknx = linknx.status_all(HOST,PORT, callback);\n```\n\n\nPour une Demande etat d'une liste Objets linknx\nOn d�clare d'abord une variable json\n```javascript\nvar Liste_objects_linknx = new Array();\nListe_objects_linknx = '{\"objects\":['\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Chambre_2_Rue_Status\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Petite_Buanderie_Plafond_Status\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Chauffage_salle_a_mangee_temp_ambiante\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Chauffage_cuisine_setpoint_in\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Chauffage_cuisine_mode_choix\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Arduino_remise_3_status\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Chambre_2_Cote_Ensemble_Cmd\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Salle_a_Manger_Lustre_Table_Cmd\"}'\nListe_objects_linknx = Liste_objects_linknx + ']}';\nListe_objects_linknx = JSON.parse(Liste_objects_linknx);\n```\nPuis\nOn appel la fonction:\n```javascript\nvar multi_status_linknx = linknx.status_multi(HOST,PORT,Liste_objects_linknx, callback);\n```\n\n\nPour un changement �tat pour un seul objet\n\n```javascript\nvar objet_linknx = \"Lumiere_Salle_a_Manger_Lustre_Table_Cmd\";\nvar value = \"on\"\nvar change_state_linknx = linknx.change_state(HOST,PORT,objet_linknx,value,callback);\n```\n\n\nPour un changement �tat de plusieurs objets\n\nOn d�clare d'abord une variable json\n```javascript\nvar Liste_objects_linknx = new Array();\nListe_objects_linknx = '{\"objects\":['\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Buanderie_Plafond_Cmd\",\"value\":\"off\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Bureau_Plafond_Cmd\",\"value\":\"off\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Cuisine_Lustre_Table_Cmd\",\"value\":\"off\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Hall_Plafond_Cmd\",\"value\":\"off\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Lumiere_Salle_a_Manger_Lustre_Table_Cmd\",\"value\":\"off\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Chauffage_bureau_mode_choix\",\"value\":\"comfort\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Chauffage_hall_entree_mode_choix\",\"value\":\"comfort\"},'\nListe_objects_linknx = Liste_objects_linknx + '{\"id\":\"Chauffage_cuisine_setpoint_in\",\"value\":\"22\"}'\nListe_objects_linknx = Liste_objects_linknx + ']}';\nListe_objects_linknx = JSON.parse(Liste_objects_linknx);\n```\nPuis\nOn appel la fonction:\n```javascript\nvar change_state_multi_linknx = linknx.change_state_multi(HOST,PORT,Liste_objects_linknx,callback);\n```\n\nRetour des fonctions\n------------------\n\nLe retour des fonctions sont toujours en json\n\n",
+  "readmeFilename": "README.md",
+  "_id": "node-linknx@0.1.7",
+  "_from": "node-linknx@"
 }
