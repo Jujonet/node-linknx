@@ -1,6 +1,6 @@
 {
   "name": "node-linknx",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Fabrice <fabrice@telecom4all.be> (http://www.telecom4all.be)",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "dependencies": {
     "xml2js": "~0.4.4"
   },
-  "description": "node-linknx\r ===========",
+  "description": "node-linknx\r <-> Communication NodeJs with Linknx",
   "bugs": {
     "url": "https://github.com/angelz07/node-linknx/issues"
   },
